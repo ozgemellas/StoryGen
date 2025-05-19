@@ -52,10 +52,6 @@
 
 ## Klasör Yapısı
 
-```bash
-tree -L 2 STORYGEN
-```
-
 ```text
 STORYGEN/
 ├─ data/
