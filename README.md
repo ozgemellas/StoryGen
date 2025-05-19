@@ -76,7 +76,7 @@ STORYGEN/
 │  │  ├─ feedback.db     # Kullanıcı beğeni ve geri bildirimler
 │  │  └─ stories.db      # Prompt, oluşturulma tarihi, PDF yolu bilgileri
 │  └─ saved_pdfs/        # Üretilen PDF dosyaları
-│     └─ story571585.pdf # Örnek PDF
+│     └─ story282851.pdf # Örnek PDF
 ├─ logs/                 # Eğitim ve üretim logları
 ├─ out-storygen/         # Model ağırlıkları ve çıktı örnekleri
 ├─ examples/             # Örnek kullanım senaryoları
