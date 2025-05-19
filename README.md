@@ -1,5 +1,6 @@
-##  📖 StoryGen 
-ROCStories veri setine dayalı olarak başlangıç cümlesi girildiğinde dinamik olarak kısa hikâye oluşturan bir Python projesidir. Projenin odağında modüler yapı, temiz mimari ve kullanıcı dostu arayüz bulunmaktadır.
+# StoryGen
+
+**StoryGen**, ROCStories veri setine dayalı olarak başlangıç cümlesi girildiğinde dinamik olarak kısa hikâye oluşturan bir Python projesidir. Projenin odağında modüler yapı, temiz mimari ve kullanıcı dostu arayüz bulunmaktadır.
 
 ---
 
@@ -46,6 +47,33 @@ ROCStories veri setine dayalı olarak başlangıç cümlesi girildiğinde dinami
 * **Gradio**: Hızlı ve basit web arayüzü oluşturma.
 * **Git & GitHub**: Sürüm kontrolü ve iş birliği.
 * **Virtualenv**: İzole Python ortamları.
+
+---
+
+## Klasör Yapısı
+
+```bash
+tree -L 2 STORYGEN
+```
+
+```text
+STORYGEN/
+├─ data/
+│  ├─ raw/               # Ham CSV dosyası
+│  └─ processed/         # Ön işleme sonrası eğitim ve doğrulama CSV'leri
+├─ scripts/              # Veri indirme ve ön işleme betikleri
+│  ├─ download_hf.py     # HF’den ROCStories indirir
+│  └─ preprocess.py      # Ham veriyi train/valid olarak işler
+├─ train.py              # Modeli eğitir
+├─ generate.py           # Komut satırından hikâye üretir
+├─ frontend/             # Gradio arayüzü
+│  └─ app.py
+├─ logs/                 # Eğitim ve üretim logları
+├─ out-storygen/         # Model ağırlıkları ve çıktı örnekleri
+├─ examples/             # Örnek kullanım senaryoları
+├─ test.py               # Birim testler
+└─ requirements.txt      # Bağımlılıklar
+```
 
 ---
 
