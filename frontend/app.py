@@ -9,7 +9,7 @@ import sqlite3
 import random
 from fastapi.staticfiles import StaticFiles
 
-# === MODEL YÜKLE ===
+# === LOAD MODEL ===
 model_path = "../out-storygen/final"
 tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 model = GPT2LMHeadModel.from_pretrained(model_path)
@@ -19,7 +19,7 @@ model.to(device)
 
 past_stories = []
 
-# === METİN ÜRET ===
+# === GENERATE TEXT ===
 def story_model_generate(start_sentence):
     inputs = tokenizer(start_sentence, return_tensors="pt", padding=True)
     input_ids = inputs["input_ids"].to(device)
@@ -40,7 +40,7 @@ def story_model_generate(start_sentence):
 
     return tokenizer.decode(output[0], skip_special_tokens=True).strip()
 
-# === HİKAYEYİ VERİTABANINA KAYDET ===
+# === SAVE STORY TO DATABASE ===
 def save_to_database(prompt, story, pdf_path):
     Path("database").mkdir(exist_ok=True)
     conn = sqlite3.connect("database/stories.db")
@@ -55,12 +55,14 @@ def save_to_database(prompt, story, pdf_path):
         )
     """)
     timestamp = datetime.now().isoformat()
-    cursor.execute("INSERT INTO stories (prompt, story, pdf_path, timestamp) VALUES (?, ?, ?, ?)",
-                   (prompt, story, pdf_path, timestamp))
+    cursor.execute(
+        "INSERT INTO stories (prompt, story, pdf_path, timestamp) VALUES (?, ?, ?, ?)",
+        (prompt, story, pdf_path, timestamp)
+    )
     conn.commit()
     conn.close()
 
-# === GERİ BİLDİRİMİ VERİTABANINA KAYDET ===
+# === SAVE FEEDBACK TO DATABASE ===
 def save_feedback(rating, comment):
     Path("database").mkdir(exist_ok=True)
     conn = sqlite3.connect("database/feedback.db")
@@ -74,13 +76,15 @@ def save_feedback(rating, comment):
         )
     """)
     timestamp = datetime.now().isoformat()
-    cursor.execute("INSERT INTO feedback (rating, comment, timestamp) VALUES (?, ?, ?)",
-                   (rating, comment, timestamp))
+    cursor.execute(
+        "INSERT INTO feedback (rating, comment, timestamp) VALUES (?, ?, ?)",
+        (rating, comment, timestamp)
+    )
     conn.commit()
     conn.close()
     return gr.update(value="", visible=False), gr.update(value=None)
 
-# === SON 5 HİKAYE TABLOSU ===
+# === LAST 5 STORIES TABLE ===
 def get_last_5_stories_table():
     db_path = Path("database/stories.db")
     if not db_path.exists():
@@ -88,7 +92,9 @@ def get_last_5_stories_table():
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT prompt, pdf_path, timestamp FROM stories ORDER BY timestamp DESC LIMIT 5")
+    cursor.execute(
+        "SELECT prompt, pdf_path, timestamp FROM stories ORDER BY timestamp DESC LIMIT 5"
+    )
     rows = cursor.fetchall()
     conn.close()
 
@@ -117,7 +123,7 @@ def get_last_5_stories_table():
     html += "</table>"
     return html
 
-# === HİKAYE ÜRET ===
+# === GENERATE STORY ===
 def generate_story(start_sentence):
     if not start_sentence.strip():
         return "Please enter a starting sentence.", gr.update(visible=False)
@@ -134,7 +140,7 @@ def generate_story(start_sentence):
     pdf = FPDF()
     pdf.add_page()
 
-    # Varsayılan Arial font ile PDF
+    # Default Arial font for PDF
     pdf.set_font("Arial", style='B', size=12)
     pdf.cell(50, 10, "Your Story Begins With:", ln=0)
     pdf.set_font("Arial", size=12)
@@ -150,11 +156,11 @@ def generate_story(start_sentence):
 
     return full_story, gr.update(value=pdf_path, visible=True)
 
-# === SIFIRLA ===
+# === RESET ===
 def clear():
     return "", "", gr.update(value=None, visible=False)
 
-# === TEMA ===
+# === THEME ===
 custom_css = """
 body {
     background-color: #0F1C2E;
@@ -177,21 +183,21 @@ button {
 }
 """
 
-# === ARAYÜZ ===
+# === INTERFACE ===
 with gr.Blocks(css=custom_css) as demo:
-    gr.Markdown("<h1>📚 Hikâye Tamamlama Sistemi</h1>")
-    gr.Markdown("Başlangıç cümlesini girin, model tamamlasın:")
+    gr.Markdown("<h1>📚 Story Completion System</h1>")
+    gr.Markdown("Enter a starting sentence and let the model complete the story:")
 
-    start_sentence = gr.Textbox(label="Başlangıç Cümlesi", placeholder="Örn: Ali sabah uyanıp...")
-    generate_button = gr.Button("📖 Hikâyeyi Üret")
+    start_sentence = gr.Textbox(label="Starting Sentence", placeholder="E.g.: John woke up in the morning...")
+    generate_button = gr.Button("📖 Generate Story")
 
-    output = gr.Textbox(label="📝 Tamamlanan Hikâye", lines=10)
-    file_output = gr.File(label="📥 PDF olarak indir", visible=False)
+    output = gr.Textbox(label="📝 Completed Story", lines=10)
+    file_output = gr.File(label="📥 Download as PDF", visible=False)
 
-    gr.Markdown("### 📣 Geri Bildirim")
-    rating = gr.Radio(["👍 Beğendim", "👎 Beğenmedim"], label="Hikâyeyi nasıl buldunuz?")
-    comment = gr.Textbox(label="Yorumunuzu yazın", placeholder="Geri bildiriminizi buraya yazın...", visible=False)
-    send_button = gr.Button("Gönder", visible=False)
+    gr.Markdown("### 📣 Feedback")
+    rating = gr.Radio(["👍 Like", "👎 Dislike"], label="How did you find the story?")
+    comment = gr.Textbox(label="Write your comment", placeholder="Write your feedback here...", visible=False)
+    send_button = gr.Button("Submit", visible=False)
 
     def show_comment_box(rating_value):
         return gr.update(visible=True), gr.update(visible=True)
@@ -199,8 +205,8 @@ with gr.Blocks(css=custom_css) as demo:
     rating.change(fn=show_comment_box, inputs=rating, outputs=[comment, send_button])
     send_button.click(fn=save_feedback, inputs=[rating, comment], outputs=[comment, rating])
 
-    reset_button = gr.Button("🔄 Yeni Hikâye")
-    gr.Markdown("### 📚 Son 5 Hikâye")
+    reset_button = gr.Button("🔄 New Story")
+    gr.Markdown("### 📚 Last 5 Stories")
     recent_box = gr.HTML(get_last_5_stories_table)
 
     generate_button.click(
@@ -220,7 +226,7 @@ with gr.Blocks(css=custom_css) as demo:
         outputs=[recent_box]
     )
 
-# === PDF SERVİSİ ===
+# === PDF SERVICE ===
 demo.app.mount("/saved_pdfs", StaticFiles(directory="saved_pdfs"), name="saved_pdfs")
 
 demo.launch()
