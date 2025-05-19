@@ -1,5 +1,5 @@
-
-**StoryGen**, ROCStories veri setine dayalı olarak başlangıç cümlesi girildiğinde dinamik olarak kısa hikâye oluşturan bir Python projesidir. Projenin odağında modüler yapı, temiz mimari ve kullanıcı dostu arayüz bulunmaktadır.
+**StoryGen**
+ROCStories veri setine dayalı olarak başlangıç cümlesi girildiğinde dinamik olarak kısa hikâye oluşturan bir Python projesidir. Projenin odağında modüler yapı, temiz mimari ve kullanıcı dostu arayüz bulunmaktadır.
 
 ---
 
