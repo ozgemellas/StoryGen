@@ -142,16 +142,18 @@ Aşağıda, farklı başlangıç cümleleri (prompt) için modelin ürettiği hi
 ## Örnek Çıktılar
 … (Örnek Çıktılar tablonuz)
 
-## Ekran Görüntüleri
 
-### 1. Örnek PDF Çıktısı  
+### Web Arayüzü Görünümü  
+![WhatsApp Görsel 2025-05-20 saat 20 28 22_3eb43521](https://github.com/user-attachments/assets/0a77ca25-b586-415c-abd0-cd14313f78e9)
+
+*Gradio tabanlı arayüzde kullanıcı başlangıç cümlesini giriyor, “Generate Story” butonuna tıkladığında üretilen hikâye metni ekranda görüntüleniyor. Alt kısımda PDF indirme bağlantısı ve beğeni/yorum alanları bulunuyor.*
+
+###  Örnek PDF Çıktısı  
 ![WhatsApp Görsel 2025-05-20 saat 20 32 29_579f0328](https://github.com/user-attachments/assets/b330ed59-33ef-4672-aa98-f431c7411ad5)
 
-*Üretilen hikâyenin FPDF ile oluşturulmuş PDF çıktısına ait örnek.*
+*Bu görsel, modelin ürettiği hikâyenin FPDF kütüphanesiyle oluşturulmuş PDF dosyasından bir önizleme sunuyor. Başlık kısmı, başlangıç cümlesi ve takip eden metin bölümleri net bir şekilde yer alıyor.*
 
-### 2. Web Arayüzü Görünümü  
 
-*StoryGen’in Gradio tabanlı arayüzü: başlangıç cümlesi girişi, hikâye çıktısı, PDF indirme ve geri bildirim.*
 
 ## Katkıda Bulunma
 … (Katkıda Bulunma bölümü)
