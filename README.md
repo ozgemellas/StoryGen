@@ -139,8 +139,6 @@ Aşağıda, farklı başlangıç cümleleri (prompt) için modelin ürettiği hi
 
 > **Not:** modelin tamamını görmek ve farklı prompt’larla denemeler yapmak için `generate.py` betiğini kullanabilirsiniz.  
 
-## Örnek Çıktılar
-… (Örnek Çıktılar tablonuz)
 
 
 ### Web Arayüzü Görünümü  
