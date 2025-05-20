@@ -152,10 +152,6 @@ Aşağıda, farklı başlangıç cümleleri (prompt) için modelin ürettiği hi
 *Bu görsel, modelin ürettiği hikâyenin FPDF kütüphanesiyle oluşturulmuş PDF dosyasından bir önizleme sunuyor. Başlık kısmı, başlangıç cümlesi ve takip eden metin bölümleri net bir şekilde yer alıyor.*
 
 
-
-## Katkıda Bulunma
-… (Katkıda Bulunma bölümü)
-
 ---
 
 ## Katkıda Bulunma
