@@ -124,6 +124,22 @@ Frontend klasöründeki `database/` dizininde:
 
 *Parametre detayları ve ek betikler proje klasörü içindeki dokümantasyonda yer alır.*
 
+## Örnek Çıktılar
+
+Aşağıda, farklı başlangıç cümleleri (prompt) için modelin ürettiği hikâyelerin ilk ~50 kelimesi gösterilmektedir. Çıktılar, ROCStories veri seti ile fine-tune edilmiş GPT-2 modelinden alınmıştır; metinler “…” ile kısaltılmıştır.
+
+| Başlangıç Cümlesi (Prompt)                                  | Üretilen Hikâye (İlk ~50 Kelime)                                                                                                                                                                  |
+|-------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| The morning light filtered through the curtains…            | The morning light filtered through the curtains and danced across the wooden floor as Emily paused to breathe in the crisp air. She felt an unexpected calm settle over her, as if the city outside had quieted in anticipation of something… |
+| In the silent forest at dawn…                               | In the silent forest at dawn, Anna lifted her binoculars and scanned the mist-shrouded canopy. Every snap of a twig echoed like a whisper, and when a flash of red feathers passed overhead, she knew her expedition would yield an unforgettable… |
+| A lone ship sailed into the harbor under…                   | A lone ship sailed into the harbor under a sky heavy with slate-grey clouds, its timbers creaking with every swell. On deck, Captain Morales clutched the railing, his eyes fixed on the distant lighthouse that promised safe haven and new beginnings… |
+| She opened the ancient book and…                            | She opened the ancient book and felt a jolt as if the pages themselves remembered centuries of secrets. Golden symbols glowed against the brittle parchment, and the room filled with a soft hum that beckoned her to trace the faded script with… |
+| When the clock struck midnight…                             | When the clock struck midnight, James crept through the grand hall, guided only by the moonlight streaming through stained-glass windows. Each step echoed on the marble floor, and as the final chime faded, he discovered a hidden door carved with… |
+| The old oak tree stood alone in…                            | The old oak tree stood alone in the clearing, its gnarled branches reaching skyward like ancient arms. Beneath its canopy, a carpet of golden leaves rustled as Nora approached, drawn by tales of a hidden grove where wishes whispered into the… |
+
+> **Not:** modelin tamamını görmek ve farklı prompt’larla denemeler yapmak için `generate.py` betiğini kullanabilirsiniz.  
+
+
 ---
 
 ## Katkıda Bulunma
