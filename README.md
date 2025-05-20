@@ -139,6 +139,22 @@ Aşağıda, farklı başlangıç cümleleri (prompt) için modelin ürettiği hi
 
 > **Not:** modelin tamamını görmek ve farklı prompt’larla denemeler yapmak için `generate.py` betiğini kullanabilirsiniz.  
 
+## Örnek Çıktılar
+… (Örnek Çıktılar tablonuz)
+
+## Ekran Görüntüleri
+
+### 1. Örnek PDF Çıktısı  
+![WhatsApp Görsel 2025-05-20 saat 20 32 29_579f0328](https://github.com/user-attachments/assets/b330ed59-33ef-4672-aa98-f431c7411ad5)
+
+*Üretilen hikâyenin FPDF ile oluşturulmuş PDF çıktısına ait örnek.*
+
+### 2. Web Arayüzü Görünümü  
+
+*StoryGen’in Gradio tabanlı arayüzü: başlangıç cümlesi girişi, hikâye çıktısı, PDF indirme ve geri bildirim.*
+
+## Katkıda Bulunma
+… (Katkıda Bulunma bölümü)
 
 ---
 
